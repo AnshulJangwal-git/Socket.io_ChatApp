@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.chat-container {
+    height: 100vh;
+    background: beige;
+    display: flex;
+}
+
+.left-view {
+    height: 100%;
+    width: 25%;
+    background: aquamarine;
+    border-radius: 2px;
+}
+
+.right-view {
+    background: rgb(52, 73, 94);
+    width: 75%;
+    height: 100%;
+}
+
+.chat-window {
+    height: 90%;
+    padding: 15px;
+    width: 100%;
+}
+
+.chat {
+    color: white;
+    min-height: 30px;
+    margin-top: 15px;
+    border-radius: 10px;
+    padding: 6px;
+    /* min-width: 20%; */
+    width: 250px;
+    clear: both;
+}
+
+.left {
+    background: rgb(44, 62, 80);
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.right {
+    background: cornflowerblue;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    float: right;
+}
+
+.leave {
+    background: mediumvioletred;
+    width: 80%;
+    margin: auto;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join {
+    background: goldenrod;
+    width: 80%;
+    margin: auto;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-input {
+    height: 10%;
+    background: rgb(52, 73, 94);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-input input {
+    border: none;
+    height: 70%;
+    width: 70%;
+    outline: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    padding: 10px;
+    background: rgb(44, 62, 80);
+    color: white;
+}
