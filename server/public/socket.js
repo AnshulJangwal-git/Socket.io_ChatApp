@@ -17,3 +17,12 @@ socket.on("join", function(username){
     chatWindow.append(joinDiv) ;
 
 })
+
+socket.on("chatLeft", function(chatObj){
+    let chatDiv = document.createElement("div") ;
+    chatDiv.classList.add("chat") ;
+    chatDiv.classList.add("left") ;
+    chatDiv.textContent = chatObj.username + " : " + chatObj.chat ;
+    chatWindow.append(chatDiv) ;
+
+})

@@ -35,6 +35,10 @@ io.on("connection", function (socket) {
     socket.broadcast.emit("join", username) ;
     })
 
+    socket.on("chat", function(chatObj){
+        socket.broadcast.emit("chatLeft", chatObj) ;
+    })
+
     socket.on("disconnect", function(){
         let leftUser ;
         let remainingUsers = userList.filter(function(userObject){
