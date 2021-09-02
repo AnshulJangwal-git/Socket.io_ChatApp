@@ -17,7 +17,7 @@ app.use(express.static("public"));
 
 
 
-const userList = []; //online list
+let userList = []; //online list
 
 
 
@@ -33,7 +33,20 @@ io.on("connection", function (socket) {
 
     //broadcast a message to all other clients except sender
     socket.broadcast.emit("join", username) ;
+    })
 
+    socket.on("disconnect", function(){
+        let leftUser ;
+        let remainingUsers = userList.filter(function(userObject){
+            if(userObject.id == socket.id){
+                leftUser = userObject.username ;
+                return false ;
+            }
+            return true ;
+        })
+
+        userList = remainingUsers ;
+        socket.broadcast.emit("leave", leftUser) ;
     })
 })
 
