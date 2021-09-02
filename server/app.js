@@ -17,10 +17,7 @@ app.use(express.static("public"));
 
 
 
-const userList = [];
-
-
-
+const userList = []; //online list
 
 
 
@@ -34,8 +31,13 @@ io.on("connection", function (socket) {
         userList.push(userObject);
         console.log(userList);
 
+    //broadcast a message to all other clients except sender
+    socket.broadcast.emit("join", username) ;
+
     })
 })
+
+
 
 //tcp port 5500
 server.listen(5500, function () {
