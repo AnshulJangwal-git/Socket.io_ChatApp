@@ -2,32 +2,42 @@
 //nodemon => dev dependency(dependency which is only used during development not in production code) 
 //socket.io => socket implement
 
-const express = require("express") ;
+const express = require("express");
+const { Server } = require("socket.io");
 
-const app = express() ;
-//server is created!
+//server is created
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+
+const io = new Server(server);
+
 // app.use(express.json()) ;  
-
-app.use(express.static("public")) ;
-
+app.use(express.static("public"));
 
 
 
+const userList = [];
 
 
 
-//get method ki request on path / 
-app.get("/home", function(request, response){
-    console.log(request) ;
 
-    response.send("Welcome to home page!") ;
+
+
+
+//connection event is attached on io
+io.on("connection", function (socket) {
+    console.log(socket.id + " Connected !!");
+
+    socket.on("userConnected", function (username) {
+        let userObject = { id: socket.id, username: username };
+        userList.push(userObject);
+        console.log(userList);
+
+    })
 })
 
-
-
-
-
-
-app.listen(5500, function(){
-    console.log("server started at port 5500 !!!") ;
+//tcp port 5500
+server.listen(5500, function () {
+    console.log("server started at port 5500 !!!");
 })
