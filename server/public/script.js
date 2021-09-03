@@ -2,7 +2,10 @@
 let chatInput = document.querySelector(".chat-input") ;
 let chatWindow = document.querySelector(".chat-window") ;
 
+let myName = document.querySelector(".me .user-name") ;
+
 let username = prompt("Enter your name!") ;
+myName.textContent = username ;
 
 chatInput.addEventListener("keypress", function(e){
     console.log(e) ;

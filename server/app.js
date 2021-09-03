@@ -31,26 +31,30 @@ io.on("connection", function (socket) {
         userList.push(userObject);
         console.log(userList);
 
-    //broadcast a message to all other clients except sender
-    socket.broadcast.emit("join", username) ;
+        //for self
+        socket.emit("omline-list", userList);
+
+        //broadcast a message to all other clients except sender
+        socket.broadcast.emit("join", { username, userObject });
+
     })
 
-    socket.on("chat", function(chatObj){
-        socket.broadcast.emit("chatLeft", chatObj) ;
+    socket.on("chat", function (chatObj) {
+        socket.broadcast.emit("chatLeft", chatObj);
     })
 
-    socket.on("disconnect", function(){
-        let leftUser ;
-        let remainingUsers = userList.filter(function(userObject){
-            if(userObject.id == socket.id){
-                leftUser = userObject.username ;
-                return false ;
+    socket.on("disconnect", function () {
+        let leftUserObject;
+        let remainingUsers = userList.filter(function (userObject) {
+            if (userObject.id == socket.id) {
+                leftUserObject = userObject;
+                return false;
             }
-            return true ;
+            return true;
         })
 
-        userList = remainingUsers ;
-        socket.broadcast.emit("leave", leftUser) ;
+        userList = remainingUsers;
+        socket.broadcast.emit("leave", leftUserObject);
     })
 })
 
