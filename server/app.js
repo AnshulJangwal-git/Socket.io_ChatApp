@@ -29,10 +29,10 @@ io.on("connection", function (socket) {
     socket.on("userConnected", function (username) {
         let userObject = { id: socket.id, username: username };
         userList.push(userObject);
-        console.log(userList);
+        console.log(userList) ;
 
         //for self
-        socket.emit("omline-list", userList);
+        socket.emit("online-list", userList);
 
         //broadcast a message to all other clients except sender
         socket.broadcast.emit("join", { username, userObject });
