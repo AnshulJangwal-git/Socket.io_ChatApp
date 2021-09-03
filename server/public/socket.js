@@ -9,6 +9,7 @@ socket.on("leave" , function(dataObj){
     leaveDiv.classList.add("leave");
     leaveDiv.textContent = `${dataObj.username} left chat`;
     chatWindow.append(leaveDiv);
+
     deleteFromOnlineList(dataObj.id);
 })
 
@@ -19,6 +20,7 @@ socket.on("join" , function(dataObj){
     joinDiv.textContent = `${dataObj.username} joined chat`;
     chatWindow.append(joinDiv);
     chatWindow.scrollTop = chatWindow.scrollHeight;
+
     addInOnlineList(dataObj);
 })
 
@@ -27,6 +29,7 @@ socket.on("chatLeft" , function(chatObj){
     chatDiv.classList.add("chat");
     chatDiv.classList.add("left");
     chatDiv.textContent = chatObj.username+ " : " +chatObj.chat;
+
     chatWindow.append(chatDiv);
 })
 
@@ -51,6 +54,7 @@ socket.on("online-list" , function(userList){
 function deleteFromOnlineList(id){
     document.querySelector(`#${id}`).remove();
 }
+
 function addInOnlineList(userObj){
     let userDiv = document.createElement("div");
             userDiv.classList.add("user");
