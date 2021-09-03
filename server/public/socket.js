@@ -65,5 +65,16 @@ function deleteFromOnlineList(id) {
 }
 
 function addInOnlineList(userObj) {
-    console.log("inside add");
+    // console.log("inside add");
+    let userDiv = document.createElement("div");
+    userDiv.classList.add("user");
+    userDiv.setAttribute("id", userObj.id) ;
+
+    userDiv.innerHTML = `<div class="user-image">
+           <img src="def.jpg" alt="" />
+           </div>
+           <div class="user-name">${userObj.username}</div>`
+
+           onlineList.append(userDiv) ; 
+
 }
